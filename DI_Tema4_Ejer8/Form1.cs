@@ -31,30 +31,38 @@ namespace DI_Tema4_Ejer8
             
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Todo (*.*)|*.*|JPEG (*.jpeg)|*.jpeg|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png";
-           
-            if(ofd.ShowDialog() == DialogResult.OK)
+
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                FileInfo f = new FileInfo(ofd.FileName);
+                try
+                {
+                    FileInfo f = new FileInfo(ofd.FileName);
                 imagenes.Clear();
 
                 if (f.Exists)
                 {
-                    imagenes.Add(new Imagen(new Bitmap(f.FullName),f.Length,f.Name));
-                    DirectoryInfo di = new DirectoryInfo(f.DirectoryName);
-                    foreach(FileInfo fi in di.EnumerateFiles())
-                    {
-                        if(fi.Extension == ".jpg" || fi.Extension == ".jpeg" || fi.Extension == ".png")
+                    
+                        imagenes.Add(new Imagen(new Bitmap(f.FullName), f.Length, f.Name));
+                        DirectoryInfo di = new DirectoryInfo(f.DirectoryName);
+                        foreach (FileInfo fi in di.EnumerateFiles())
                         {
-                            if(fi.FullName != f.FullName)
-                                imagenes.Add(new Imagen(new Bitmap(fi.FullName), fi.Length, fi.Name));
+                            if (fi.Extension == ".jpg" || fi.Extension == ".jpeg" || fi.Extension == ".png")
+                            {
+                                if (fi.FullName != f.FullName)
+                                    imagenes.Add(new Imagen(new Bitmap(fi.FullName), fi.Length, fi.Name));
+                            }
                         }
                     }
-                }
                 pos = 0;
 
-                labelDirectorio.Text = f.DirectoryName;
+                    labelDirectorio.Text = f.DirectoryName;
 
-                sacamosSegundo();
+                    sacamosSegundo();
+                }
+                catch (ArgumentException)
+                {
+                    labelDatos.Text = "El parametro no era una imagen";
+                }
             }
 
         }
@@ -91,14 +99,20 @@ namespace DI_Tema4_Ejer8
 
         public void avance_Click(object sender, EventArgs e)
         {
-            pos++;
-            sacamosSegundo();
+            if (imagenes.Count > 0)
+            {
+                pos++;
+                sacamosSegundo();
+            }
         }
 
         public  void retroceso_Click(object sender, EventArgs e)
         {
-            pos--;
-            sacamosSegundo();
+            if (imagenes.Count > 0)
+            {
+                pos--;
+                sacamosSegundo();
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)
