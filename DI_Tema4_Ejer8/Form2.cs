@@ -21,5 +21,12 @@ namespace DI_Tema4_Ejer8
         {
 
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+     
     }
 }

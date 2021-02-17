@@ -34,6 +34,8 @@
             this.labelDirectorio = new System.Windows.Forms.Label();
             this.labelDatos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // abrir
@@ -84,10 +86,20 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(13, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(577, 387);
             this.panel1.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(362, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "No me preguntes de donde saque que habia que poner la foto anterior aqui";
             // 
             // Form1
             // 
@@ -105,6 +117,8 @@
             this.ShowIcon = false;
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,6 +132,7 @@
         private System.Windows.Forms.Label labelDirectorio;
         private System.Windows.Forms.Label labelDatos;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
