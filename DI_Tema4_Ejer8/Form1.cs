@@ -43,8 +43,8 @@ namespace DI_Tema4_Ejer8
 
         private void abrir_Click(object sender, EventArgs e)
         {
-
-            
+            labelDatos.Text = "";
+            labelDirectorio.Text = "";
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Todo (*.*)|*.*|JPEG (*.jpeg)|*.jpeg|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png";
 
@@ -52,6 +52,7 @@ namespace DI_Tema4_Ejer8
             {
 
                 imagenes.Clear();
+                
                 FileInfo f = new FileInfo(ofd.FileName);
 
                 if (f.Exists)
@@ -74,12 +75,14 @@ namespace DI_Tema4_Ejer8
                             }
                         }
                     }
+                    if (imagenes.Count > 0)
+                    {
+                        pos = 0;
 
-                    pos = 0;
+                        labelDirectorio.Text = f.DirectoryName;
 
-                    labelDirectorio.Text = f.DirectoryName;
-
-                    sacamosSegundo();
+                        sacamosSegundo();
+                    }
                 }
             }
         }
@@ -122,6 +125,7 @@ namespace DI_Tema4_Ejer8
                 if (tsmi.Name == "c")
                 {
                     tsmi.Click += new EventHandler((Object sender, EventArgs e)=>f2.Close());
+                    imagenes.Clear();
                 }
             }
             f2.Show();
